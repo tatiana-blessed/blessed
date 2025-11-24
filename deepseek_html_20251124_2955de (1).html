@@ -1,0 +1,2206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLESSED - Хэндмейд заколки-банты</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #ff9ebb;
+            --secondary: #c97b9a;
+            --accent: #f5d0dc;
+            --dark: #333;
+            --light: #f9f9f9;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-success {
+            background: #27ae60;
+        }
+        
+        .btn-success:hover {
+            background: #219653;
+        }
+        
+        .btn-danger {
+            background: #e74c3c;
+        }
+        
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+        
+        .btn-warning {
+            background: #f39c12;
+        }
+        
+        .btn-warning:hover {
+            background: #e67e22;
+        }
+        
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+        
+        /* Page Sections */
+        .page-section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: var(--dark);
+        }
+        
+        /* Products Section */
+        .products {
+            background-color: var(--accent);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-img {
+            height: 250px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: var(--dark);
+        }
+        
+        .product-info p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .price {
+            font-weight: bold;
+            color: var(--secondary);
+            font-size: 22px;
+            margin: 15px 0;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        
+        /* Forum Section */
+        .forum {
+            background-color: white;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .news-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .news-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .news-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .news-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .news-content {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .news-date {
+            color: #888;
+            font-size: 14px;
+        }
+        
+        .comments-section {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        
+        .comments-list {
+            margin-bottom: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .comment {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .comment-author {
+            font-weight: bold;
+            color: var(--secondary);
+        }
+        
+        .comment-date {
+            color: #888;
+            font-size: 12px;
+        }
+        
+        .comment-text {
+            line-height: 1.5;
+        }
+        
+        .comment-actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: none;
+        }
+        
+        .admin-mode .comment-actions {
+            display: block;
+        }
+        
+        .comment-action {
+            background: rgba(231, 76, 60, 0.1);
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            color: #e74c3c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .comment-input {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .auth-required {
+            background: #fff9e6;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #f39c12;
+        }
+        
+        .auth-required p {
+            margin-bottom: 10px;
+        }
+        
+        .add-news-form {
+            background: #f9f9f9;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .add-news-form.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        /* Reviews Section */
+        .reviews {
+            background-color: white;
+        }
+        
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .review-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .review-card.pending {
+            border-left: 5px solid #f39c12;
+            background: #fff9e6;
+        }
+        
+        .review-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .review-text {
+            font-style: italic;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .review-author {
+            font-weight: bold;
+            color: var(--secondary);
+            text-align: right;
+        }
+        
+        .review-product {
+            font-size: 14px;
+            color: #888;
+            margin-top: 5px;
+            text-align: right;
+        }
+        
+        .review-status {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            background: #eee;
+        }
+        
+        .review-status.pending {
+            background: #f39c12;
+            color: white;
+        }
+        
+        .review-actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 5px;
+            display: none;
+        }
+        
+        .admin-mode .review-actions {
+            display: flex;
+        }
+        
+        .review-action {
+            width: 25px;
+            height: 25px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        /* About Section */
+        .about {
+            background-color: white;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        
+        .about-image {
+            flex: 1;
+            height: 400px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: var(--accent);
+        }
+        
+        .contact-content {
+            display: flex;
+            gap: 50px;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-form {
+            flex: 1;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+        }
+        
+        /* Registration Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal h3 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .modal-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .modal-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            flex: 1;
+            text-align: center;
+        }
+        
+        .modal-tab.active {
+            border-bottom: 3px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .modal-tab-content {
+            display: none;
+        }
+        
+        .modal-tab-content.active {
+            display: block;
+        }
+        
+        /* Admin Section */
+        .admin-section {
+            background-color: var(--accent);
+            display: none;
+        }
+        
+        .admin-section.active {
+            display: block;
+        }
+        
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .login-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .admin-panel {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .admin-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .admin-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .admin-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .admin-tab.active {
+            border-bottom: 3px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .admin-tab-content {
+            display: none;
+        }
+        
+        .admin-tab-content.active {
+            display: block;
+        }
+        
+        .pending-reviews-list {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        
+        .pending-review {
+            background: #fff9e6;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #f39c12;
+        }
+        
+        .pending-review-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            font-size: 14px;
+            color: #aaa;
+        }
+        
+        /* Page Navigation */
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .about-content, .contact-content {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .admin-controls {
+                flex-direction: column;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .admin-tabs {
+                flex-direction: column;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-tabs {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-img">
+                        <!-- Ваш логотип будет здесь -->
+                        Лого
+                    </div>
+                    <span>BLESSED</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="nav-link active" data-page="home">Главная</a></li>
+                        <li><a href="#" class="nav-link" data-page="products">Каталог</a></li>
+                        <li><a href="#" class="nav-link" data-page="forum">Новости</a></li>
+                        <li><a href="#" class="nav-link" data-page="reviews">Отзывы</a></li>
+                        <li><a href="#" class="nav-link" data-page="about">О нас</a></li>
+                        <li><a href="#" class="nav-link" data-page="contact">Контакты</a></li>
+                        <li><a href="#" class="nav-link" data-page="admin">Управление</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Главная страница -->
+    <div id="home" class="page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Эксклюзивные заколки-банты ручной работы</h1>
+                <p>Уникальные аксессуары для волос, созданные с любовью и вниманием к деталям</p>
+                <a href="#" class="btn nav-link" data-page="products">Смотреть каталог</a>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="page-section products">
+            <div class="container">
+                <h2 class="section-title">Популярные товары</h2>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-img" style="background-color: #f5d0dc;">
+                            <span>Изображение заколки-банта</span>
+                        </div>
+                        <div class="product-info">
+                            <h3>Элегантный бант с жемчугом</h3>
+                            <p>Нежный бант из атласной ленты с декоративными жемчужинами</p>
+                            <div class="price">800 ₽</div>
+                            <div class="product-actions">
+                                <a href="https://www.avito.ru/brands/13515ad6acc630ab13218e1df6a7646e/all?gdlkerfdnwq=101&iid=7809350964&item_type=str_trx&page_from=from_item_card&sellerId=9527e5772bb848fdc4476196e3b4c9ea" class="btn" target="_blank">Заказать</a>
+                                <button class="btn btn-outline add-review-btn" data-product="Элегантный бант с жемчугом">Оставить отзыв</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-img" style="background-color: #c9e4f7;">
+                            <span>Изображение заколки-банта</span>
+                        </div>
+                        <div class="product-info">
+                            <h3>Бант в стиле ретро</h3>
+                            <p>Яркий бант из бархатной ткани с винтажным узором</p>
+                            <div class="price">800 ₽</div>
+                            <div class="product-actions">
+                                <a href="https://www.avito.ru/brands/13515ad6acc630ab13218e1df6a7646e/all?gdlkerfdnwq=101&iid=7809350964&item_type=str_trx&page_from=from_item_card&sellerId=9527e5772bb848fdc4476196e3b4c9ea" class="btn" target="_blank">Заказать</a>
+                                <button class="btn btn-outline add-review-btn" data-product="Бант в стиле ретро">Оставить отзыв</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="#" class="btn nav-link" data-page="products">Смотреть весь каталог</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest News -->
+        <section class="page-section forum">
+            <div class="container">
+                <h2 class="section-title">Последние новости</h2>
+                <div class="news-grid" id="home-news-container">
+                    <!-- Новости будут загружаться здесь -->
+                </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="#" class="btn nav-link" data-page="forum">Все новости</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Страница каталога -->
+    <div id="products" class="page">
+        <section class="page-section products">
+            <div class="container">
+                <h2 class="section-title">Каталог заколок-бантов</h2>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-img" style="background-color: #f5d0dc;">
+                            <span>Изображение заколки-банта</span>
+                        </div>
+                        <div class="product-info">
+                            <h3>Элегантный бант с жемчугом</h3>
+                            <p>Нежный бант из атласной ленты с декоративными жемчужинами</p>
+                            <div class="price">800 ₽</div>
+                            <div class="product-actions">
+                                <a href="https://www.avito.ru/brands/13515ad6acc630ab13218e1df6a7646e/all?gdlkerfdnwq=101&iid=7809350964&item_type=str_trx&page_from=from_item_card&sellerId=9527e5772bb848fdc4476196e3b4c9ea" class="btn" target="_blank">Заказать</a>
+                                <button class="btn btn-outline add-review-btn" data-product="Элегантный бант с жемчугом">Оставить отзыв</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-img" style="background-color: #c9e4f7;">
+                            <span>Изображение заколки-банта</span>
+                        </div>
+                        <div class="product-info">
+                            <h3>Бант в стиле ретро</h3>
+                            <p>Яркий бант из бархатной ткани с винтажным узором</p>
+                            <div class="price">800 ₽</div>
+                            <div class="product-actions">
+                                <a href="https://www.avito.ru/brands/13515ad6acc630ab13218e1df6a7646e/all?gdlkerfdnwq=101&iid=7809350964&item_type=str_trx&page_from=from_item_card&sellerId=9527e5772bb848fdc4476196e3b4c9ea" class="btn" target="_blank">Заказать</a>
+                                <button class="btn btn-outline add-review-btn" data-product="Бант в стиле ретро">Оставить отзыв</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-img" style="background-color: #d4e6d4;">
+                            <span>Изображение заколки-банта</span>
+                        </div>
+                        <div class="product-info">
+                            <h3>Минималистичный бант</h3>
+                            <p>Сдержанный бант из натурального шелка пастельных тонов</p>
+                            <div class="price">800 ₽</div>
+                            <div class="product-actions">
+                                <a href="https://www.avito.ru/brands/13515ad6acc630ab13218e1df6a7646e/all?gdlkerfdnwq=101&iid=7809350964&item_type=str_trx&page_from=from_item_card&sellerId=9527e5772bb848fdc4476196e3b4c9ea" class="btn" target="_blank">Заказать</a>
+                                <button class="btn btn-outline add-review-btn" data-product="Минималистичный бант">Оставить отзыв</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-img" style="background-color: #f7e4c9;">
+                            <span>Изображение заколки-банта</span>
+                        </div>
+                        <div class="product-info">
+                            <h3>Вечерний бант с кристаллами</h3>
+                            <p>Роскошный бант для особых случаев с искрящимися кристаллами</p>
+                            <div class="price">800 ₽</div>
+                            <div class="product-actions">
+                                <a href="https://www.avito.ru/brands/13515ad6acc630ab13218e1df6a7646e/all?gdlkerfdnwq=101&iid=7809350964&item_type=str_trx&page_from=from_item_card&sellerId=9527e5772bb848fdc4476196e3b4c9ea" class="btn" target="_blank">Заказать</a>
+                                <button class="btn btn-outline add-review-btn" data-product="Вечерний бант с кристаллами">Оставить отзыв</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Страница новостей -->
+    <div id="forum" class="page">
+        <section class="page-section forum">
+            <div class="container">
+                <h2 class="section-title">Новости и обсуждения</h2>
+                
+                <div class="news-grid" id="news-container">
+                    <!-- Новости будут загружаться здесь -->
+                </div>
+                
+                <!-- Форма добавления новости (только для админа) -->
+                <div class="add-news-form" id="add-news-form">
+                    <h3>Добавить новость</h3>
+                    <form id="news-form">
+                        <div class="form-group">
+                            <label for="news-title">Заголовок новости</label>
+                            <input type="text" id="news-title" placeholder="Введите заголовок" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="news-content">Текст новости</label>
+                            <textarea id="news-content" placeholder="Введите текст новости" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Опубликовать новость</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Страница отзывов -->
+    <div id="reviews" class="page">
+        <section class="page-section reviews">
+            <div class="container">
+                <h2 class="section-title">Отзывы наших клиентов</h2>
+                
+                <div class="reviews-grid" id="reviews-container">
+                    <!-- Отзывы будут загружаться здесь -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Страница "О нас" -->
+    <div id="about" class="page">
+        <section class="page-section about">
+            <div class="container">
+                <h2 class="section-title">О нашем творчестве</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>О нашем творчестве</h2>
+                        <p>Мы создаем уникальные заколки-банты ручной работы, которые подчеркивают индивидуальность и добавляют изюминку вашему образу. Каждое изделие сделано с любовью и вниманием к деталям.</p>
+                        <p>Мы используем только качественные материалы: натуральные ткани, стразы, жемчуг и фурнитуру премиум-класса. Наши банты - это не просто аксессуары, а маленькие произведения искусства.</p>
+                        <p>Все изделия изготавливаются в единственном экземпляре или ограниченными сериями, поэтому вы можете быть уверены в уникальности вашего приобретения.</p>
+                    </div>
+                    <div class="about-image">
+                        <!-- Замените на ваше изображение -->
+                        <span>Фото процесса создания</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Страница контактов -->
+    <div id="contact" class="page">
+        <section class="page-section contact">
+            <div class="container">
+                <h2 class="section-title">Свяжитесь с нами</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i>📍</i>
+                            </div>
+                            <div>
+                                <h3>Адрес</h3>
+                                <p>Доставка по всей России</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i>📞</i>
+                            </div>
+                            <div>
+                                <h3>Телефон</h3>
+                                <p>+7 (XXX) XXX-XX-XX</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i>✉️</i>
+                            </div>
+                            <div>
+                                <h3>Email</h3>
+                                <p>bows-blessed@example.ru</p>
+                            </div>
+                        </div>
+                        <div class="social-links">
+                            <!-- ВСТАВЬТЕ ВАШИ ССЫЛКИ ЗДЕСЬ -->
+                            <a href="https://t.me/your_telegram" target="_blank">TG</a>
+                            <a href="https://www.avito.ru/brands/13515ad6acc630ab13218e1df6a7646e/all?gdlkerfdnwq=101&iid=7809350964&item_type=str_trx&page_from=from_item_card&sellerId=9527e5772bb848fdc4476196e3b4c9ea" target="_blank">AV</a>
+                            <a href="https://vk.com/your_vk" target="_blank">VK</a>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form id="order-form">
+                            <div class="form-group">
+                                <label for="name">Ваше имя</label>
+                                <input type="text" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Ваш телефон</label>
+                                <input type="tel" id="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product">Интересующий товар</label>
+                                <input type="text" id="product">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Дополнительная информация</label>
+                                <textarea id="message"></textarea>
+                            </div>
+                            <button type="submit" class="btn">Отправить заявку</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Страница управления -->
+    <div id="admin" class="page">
+        <section class="page-section admin-section">
+            <div class="container">
+                <div id="login-form" class="login-form">
+                    <h2>Вход в панель управления</h2>
+                    <div class="form-group">
+                        <label for="password">Пароль</label>
+                        <input type="password" id="password" placeholder="Введите пароль">
+                    </div>
+                    <button class="btn" id="login-btn">Войти</button>
+                    <p id="login-error" style="color: red; margin-top: 10px; display: none;">Неверный пароль!</p>
+                </div>
+                
+                <div id="admin-panel" class="admin-panel" style="display: none;">
+                    <h2>Панель управления</h2>
+                    
+                    <div class="admin-tabs">
+                        <div class="admin-tab active" data-tab="moderation">Модерация отзывов</div>
+                        <div class="admin-tab" data-tab="published">Опубликованные отзывы</div>
+                        <div class="admin-tab" data-tab="news">Управление новостями</div>
+                        <div class="admin-tab" data-tab="comments">Модерация комментариев</div>
+                        <div class="admin-tab" data-tab="add-review">Добавить отзыв</div>
+                    </div>
+                    
+                    <div class="admin-tab-content active" id="moderation-tab">
+                        <h3>Отзывы на модерации</h3>
+                        <div class="pending-reviews-list" id="pending-reviews-container">
+                            <!-- Отзывы на модерации будут здесь -->
+                        </div>
+                    </div>
+                    
+                    <div class="admin-tab-content" id="published-tab">
+                        <h3>Опубликованные отзывы</h3>
+                        <div class="admin-controls">
+                            <button class="btn" id="toggle-admin-mode">Режим удаления</button>
+                            <button class="btn btn-warning" id="add-sample-reviews">Добавить примеры отзывов</button>
+                            <button class="btn btn-danger" id="clear-all-reviews">Удалить все отзывы</button>
+                        </div>
+                        <div class="reviews-grid" id="admin-reviews-container">
+                            <!-- Опубликованные отзывы для админа -->
+                        </div>
+                    </div>
+                    
+                    <div class="admin-tab-content" id="news-tab">
+                        <h3>Управление новостями</h3>
+                        <div class="admin-controls">
+                            <button class="btn" id="toggle-news-form">Добавить новость</button>
+                            <button class="btn btn-warning" id="add-sample-news">Добавить примеры новостей</button>
+                            <button class="btn btn-danger" id="clear-all-news">Удалить все новости</button>
+                        </div>
+                        <div id="admin-news-container">
+                            <!-- Новости для админа -->
+                        </div>
+                    </div>
+                    
+                    <div class="admin-tab-content" id="comments-tab">
+                        <h3>Модерация комментариев</h3>
+                        <div class="admin-controls">
+                            <button class="btn" id="toggle-comments-mode">Режим удаления комментариев</button>
+                        </div>
+                        <div id="admin-comments-container">
+                            <!-- Комментарии для модерации -->
+                        </div>
+                    </div>
+                    
+                    <div class="admin-tab-content" id="add-review-tab">
+                        <h3>Добавить новый отзыв</h3>
+                        <div class="form-group">
+                            <label for="new-review-product">Товар</label>
+                            <select id="new-review-product">
+                                <option value="Элегантный бант с жемчугом">Элегантный бант с жемчугом</option>
+                                <option value="Бант в стиле ретро">Бант в стиле ретро</option>
+                                <option value="Минималистичный бант">Минималистичный бант</option>
+                                <option value="Вечерний бант с кристаллами">Вечерний бант с кристаллами</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-review-text">Текст отзыва</label>
+                            <textarea id="new-review-text" placeholder="Введите текст отзыва"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-review-author">Автор отзыва</label>
+                            <input type="text" id="new-review-author" placeholder="Имя автора">
+                        </div>
+                        <button class="btn" id="add-review-btn">Добавить отзыв</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Review Modal -->
+    <div class="modal" id="review-modal">
+        <div class="modal-content">
+            <h3>Оставить отзыв</h3>
+            <form id="review-form">
+                <div class="form-group">
+                    <label for="review-product">Товар</label>
+                    <input type="text" id="review-product" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="review-author">Ваше имя</label>
+                    <input type="text" id="review-author" placeholder="Введите ваше имя" required>
+                </div>
+                <div class="form-group">
+                    <label for="review-text">Ваш отзыв</label>
+                    <textarea id="review-text" placeholder="Поделитесь вашими впечатлениями о товаре" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="review-rating">Оценка</label>
+                    <select id="review-rating">
+                        <option value="5">★★★★★ Отлично</option>
+                        <option value="4">★★★★☆ Очень хорошо</option>
+                        <option value="3">★★★☆☆ Хорошо</option>
+                        <option value="2">★★☆☆☆ Удовлетворительно</option>
+                        <option value="1">★☆☆☆☆ Плохо</option>
+                    </select>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button type="submit" class="btn">Отправить отзыв</button>
+                    <button type="button" class="btn btn-outline" id="cancel-review">Отмена</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Registration Modal -->
+    <div class="modal" id="registration-modal">
+        <div class="modal-content">
+            <h3>Регистрация для комментариев</h3>
+            
+            <div class="modal-tabs">
+                <div class="modal-tab active" data-tab="login">Вход</div>
+                <div class="modal-tab" data-tab="register">Регистрация</div>
+            </div>
+            
+            <div class="modal-tab-content active" id="login-tab">
+                <form id="login-form-modal">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" placeholder="Введите ваш email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Пароль</label>
+                        <input type="password" id="login-password" placeholder="Введите ваш пароль" required>
+                    </div>
+                    <button type="submit" class="btn">Войти</button>
+                </form>
+                <p id="login-error-modal" style="color: red; margin-top: 10px; display: none;">Неверный email или пароль!</p>
+            </div>
+            
+            <div class="modal-tab-content" id="register-tab">
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="register-name">Имя</label>
+                        <input type="text" id="register-name" placeholder="Введите ваше имя" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email</label>
+                        <input type="email" id="register-email" placeholder="Введите ваш email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Пароль</label>
+                        <input type="password" id="register-password" placeholder="Придумайте пароль" required>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="subscribe-news" checked>
+                            Подписаться на рассылку новостей и обсуждений
+                        </label>
+                    </div>
+                    <button type="submit" class="btn">Зарегистрироваться</button>
+                </form>
+                <p id="register-success" style="color: green; margin-top: 10px; display: none;">Регистрация успешна! Теперь вы можете оставлять комментарии.</p>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <button type="button" class="btn btn-outline" id="cancel-registration">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>BLESSED</h3>
+                    <p>Эксклюзивные заколки-банты ручной работы. Создано с любовью!</p>
+                    <div class="social-links">
+                        <!-- ВСТАВЬТЕ ВАШИ ССЫЛКИ ЗДЕСЬ -->
+                        <a href="https://t.me/your_telegram" target="_blank">TG</a>
+                        <a href="https://www.avito.ru/brands/13515ad6acc630ab13218e1df6a7646e/all?gdlkerfdnwq=101&iid=7809350964&item_type=str_trx&page_from=from_item_card&sellerId=9527e5772bb848fdc4476196e3b4c9ea" target="_blank">AV</a>
+                        <a href="https://vk.com/your_vk" target="_blank">VK</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Каталог</h3>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-page="products">Заколки-банты</a></li>
+                        <li><a href="#" class="nav-link" data-page="products">Новые поступления</a></li>
+                        <li><a href="#" class="nav-link" data-page="products">Хиты продаж</a></li>
+                        <li><a href="#" class="nav-link" data-page="products">Эксклюзивные модели</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Покупателям</h3>
+                    <ul>
+                        <li><a href="#">Оплата и доставка</a></li>
+                        <li><a href="#">Возврат и обмен</a></li>
+                        <li><a href="#">Частые вопросы</a></li>
+                        <li><a href="#" class="nav-link" data-page="reviews">Отзывы</a></li>
+                        <li><a href="#" class="nav-link" data-page="forum">Новости</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li>Доставка по всей России</li>
+                        <li>+7 (XXX) XXX-XX-XX</li>
+                        <li>bows-blessed@example.ru</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 BLESSED. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Система управления отзывами, новостями и пользователями
+        const PASSWORD = "Lolitaf117";
+        let isAdminMode = false;
+        let isCommentsAdminMode = false;
+        let reviews = [];
+        let pendingReviews = [];
+        let news = [];
+        let users = [];
+        let currentUser = null;
+
+        // Примеры отзывов разной длины
+        const sampleReviews = [
+            { text: "Превосходно!", author: "Анна", product: "Элегантный бант с жемчугом", status: "published" },
+            { text: "Заказывала уже три бантика от BLESSED, и все просто шикарные! Качество материалов на высоте, все аккуратно прошито, держится крепко. Особенно радует, что каждый бантик уникален - такого точно ни у кого не будет. Теперь собираю небольшую коллекцию и уже присматриваю следующий!", author: "Екатерина", product: "Бант в стиле ретро", status: "published" },
+            { text: "Идеально сидит!", author: "София", product: "Минималистичный бант", status: "published" },
+            { text: "Получила свой заказ быстрее, чем ожидала! Бантик еще красивее, чем на фото - переливается на солнце, все подружки спрашивают, где купила. Очень довольна покупкой и обязательно закажу еще. Спасибо за такую красоту ручной работы!", author: "Мария", product: "Вечерний бант с кристаллами", status: "published" },
+            { text: "Супер качество!", author: "Ольга", product: "Элегантный бант с жемчугом", status: "published" },
+            { text: "Заказывала бант на день рождения дочери - она была в восторге! Качество исполнения просто отличное, все детали продуманы. Дочка носила весь день, бант не деформировался и хорошо держался в волосах. Теперь хотим заказать еще несколько в разных цветах. Рекомендую!", author: "Ирина", product: "Бант в стиле ретро", status: "published" }
+        ];
+
+        // Примеры новостей
+        const sampleNews = [
+            {
+                id: 1,
+                title: "Новый цвет бантов - небесная лазурь!",
+                content: "Дорогие друзья! Спешим поделиться радостной новостью - в нашу коллекцию добавился восхитительный небесно-голубой цвет! Эти банты идеально подходят для весенних образов и создают невероятно нежное настроение. Уже доступны для заказа во всех моделях!",
+                author: "Администратор",
+                date: "2023-11-15",
+                comments: [
+                    { id: 1, author: "Марина", text: "Очень красивый цвет! Обязательно закажу для дочки на выпускной!", date: "2023-11-16" },
+                    { id: 2, author: "Анна", text: "А когда будут в наличии банты в этом цвете с жемчугом?", date: "2023-11-16" }
+                ]
+            },
+            {
+                id: 2,
+                title: "Теперь с подарочной упаковкой!",
+                content: "Отличные новости для тех, кто любит дарить красивые подарки! Теперь все наши банты можно заказать в праздничной подарочной упаковке. Элегантная коробочка с лентой сделает ваш подарок еще более особенным. Подарочная упаковка доступна бесплатно при заказе от 2 бантов!",
+                author: "Администратор",
+                date: "2023-11-10",
+                comments: [
+                    { id: 3, author: "Ольга", text: "Отличная идея! Как раз ищу подарок подруге на день рождения.", date: "2023-11-11" },
+                    { id: 4, author: "Светлана", text: "А можно посмотреть фото упаковки?", date: "2023-11-12" }
+                ]
+            }
+        ];
+
+        // Загрузка данных из localStorage
+        function loadData() {
+            const savedReviews = localStorage.getItem('blessed-reviews');
+            const savedPending = localStorage.getItem('blessed-pending-reviews');
+            const savedNews = localStorage.getItem('blessed-news');
+            const savedUsers = localStorage.getItem('blessed-users');
+            const savedCurrentUser = localStorage.getItem('blessed-current-user');
+            
+            if (savedReviews) {
+                reviews = JSON.parse(savedReviews);
+            } else {
+                reviews = sampleReviews.filter(r => r.status === "published");
+                saveData();
+            }
+            
+            if (savedPending) {
+                pendingReviews = JSON.parse(savedPending);
+            }
+            
+            if (savedNews) {
+                news = JSON.parse(savedNews);
+            } else {
+                news = sampleNews;
+                saveData();
+            }
+            
+            if (savedUsers) {
+                users = JSON.parse(savedUsers);
+            }
+            
+            if (savedCurrentUser) {
+                currentUser = JSON.parse(savedCurrentUser);
+            }
+            
+            renderReviews();
+            renderPendingReviews();
+            renderNews();
+            renderHomeNews();
+            updateAuthUI();
+        }
+
+        // Сохранение данных в localStorage
+        function saveData() {
+            localStorage.setItem('blessed-reviews', JSON.stringify(reviews));
+            localStorage.setItem('blessed-pending-reviews', JSON.stringify(pendingReviews));
+            localStorage.setItem('blessed-news', JSON.stringify(news));
+            localStorage.setItem('blessed-users', JSON.stringify(users));
+            localStorage.setItem('blessed-current-user', JSON.stringify(currentUser));
+        }
+
+        // Обновление UI в зависимости от авторизации
+        function updateAuthUI() {
+            const authElements = document.querySelectorAll('.auth-required');
+            if (currentUser) {
+                authElements.forEach(el => {
+                    el.style.display = 'none';
+                });
+            } else {
+                authElements.forEach(el => {
+                    el.style.display = 'block';
+                });
+            }
+        }
+
+        // Навигация по страницам
+        function navigateToPage(pageId) {
+            // Скрыть все страницы
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Показать выбранную страницу
+            document.getElementById(pageId).classList.add('active');
+            
+            // Обновить активную ссылку в навигации
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector(`.nav-link[data-page="${pageId}"]`).classList.add('active');
+            
+            // Прокрутить к верху страницы
+            window.scrollTo(0, 0);
+        }
+
+        // Отображение опубликованных отзывов
+        function renderReviews() {
+            const container = document.getElementById('reviews-container');
+            const adminContainer = document.getElementById('admin-reviews-container');
+            
+            container.innerHTML = '';
+            adminContainer.innerHTML = '';
+            
+            reviews.forEach((review, index) => {
+                const reviewCard = createReviewCard(review, index, false);
+                const adminReviewCard = createReviewCard(review, index, true);
+                
+                container.appendChild(reviewCard);
+                adminContainer.appendChild(adminReviewCard);
+            });
+        }
+
+        // Создание карточки отзыва
+        function createReviewCard(review, index, isAdmin) {
+            const reviewCard = document.createElement('div');
+            reviewCard.className = 'review-card';
+            
+            if (isAdmin) {
+                reviewCard.innerHTML = `
+                    <div class="review-actions">
+                        <button class="review-action btn-danger" data-index="${index}" data-action="delete">×</button>
+                    </div>
+                    <p class="review-text">${review.text}</p>
+                    <p class="review-author">- ${review.author}</p>
+                    <p class="review-product">${review.product}</p>
+                `;
+            } else {
+                reviewCard.innerHTML = `
+                    <p class="review-text">${review.text}</p>
+                    <p class="review-author">- ${review.author}</p>
+                    <p class="review-product">${review.product}</p>
+                `;
+            }
+            
+            return reviewCard;
+        }
+
+        // Отображение новостей на главной странице (только 2 последние)
+        function renderHomeNews() {
+            const container = document.getElementById('home-news-container');
+            container.innerHTML = '';
+            
+            const latestNews = news.slice(0, 2);
+            
+            latestNews.forEach((newsItem, index) => {
+                const newsCard = document.createElement('div');
+                newsCard.className = 'news-card';
+                
+                newsCard.innerHTML = `
+                    <div class="news-header">
+                        <div class="news-author">
+                            <div class="author-avatar">A</div>
+                            <div>
+                                <div class="author-name">${newsItem.author}</div>
+                                <div class="news-date">${newsItem.date}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="news-title">${newsItem.title}</h3>
+                    <div class="news-content">${newsItem.content}</div>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <a href="#" class="btn btn-outline nav-link" data-page="forum">Читать далее</a>
+                    </div>
+                `;
+                container.appendChild(newsCard);
+            });
+        }
+
+        // Отображение новостей
+        function renderNews() {
+            const container = document.getElementById('news-container');
+            container.innerHTML = '';
+            
+            news.forEach((newsItem, index) => {
+                const newsCard = document.createElement('div');
+                newsCard.className = 'news-card';
+                
+                let commentsSection;
+                if (currentUser) {
+                    commentsSection = `
+                        <div class="comments-section">
+                            <h4>Комментарии (${newsItem.comments.length})</h4>
+                            <div class="comments-list">
+                                ${newsItem.comments.map(comment => `
+                                    <div class="comment">
+                                        <div class="comment-actions">
+                                            <button class="comment-action btn-danger" data-news-id="${newsItem.id}" data-comment-id="${comment.id}">×</button>
+                                        </div>
+                                        <div class="comment-header">
+                                            <span class="comment-author">${comment.author}</span>
+                                            <span class="comment-date">${comment.date}</span>
+                                        </div>
+                                        <div class="comment-text">${comment.text}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <form class="comment-form" data-news-id="${newsItem.id}">
+                                <textarea class="comment-input" placeholder="Оставьте ваш комментарий..." required></textarea>
+                                <button type="submit" class="btn btn-outline">Отправить комментарий</button>
+                            </form>
+                        </div>
+                    `;
+                } else {
+                    commentsSection = `
+                        <div class="comments-section">
+                            <h4>Комментарии (${newsItem.comments.length})</h4>
+                            <div class="comments-list">
+                                ${newsItem.comments.map(comment => `
+                                    <div class="comment">
+                                        <div class="comment-header">
+                                            <span class="comment-author">${comment.author}</span>
+                                            <span class="comment-date">${comment.date}</span>
+                                        </div>
+                                        <div class="comment-text">${comment.text}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <div class="auth-required">
+                                <p>Чтобы оставить комментарий, необходимо <button class="btn btn-small open-registration">зарегистрироваться</button></p>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                newsCard.innerHTML = `
+                    <div class="news-header">
+                        <div class="news-author">
+                            <div class="author-avatar">A</div>
+                            <div>
+                                <div class="author-name">${newsItem.author}</div>
+                                <div class="news-date">${newsItem.date}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="news-title">${newsItem.title}</h3>
+                    <div class="news-content">${newsItem.content}</div>
+                    ${commentsSection}
+                `;
+                container.appendChild(newsCard);
+            });
+            
+            // Добавляем обработчики для кнопок регистрации
+            document.querySelectorAll('.open-registration').forEach(button => {
+                button.addEventListener('click', openRegistrationModal);
+            });
+        }
+
+        // Отображение отзывов на модерации
+        function renderPendingReviews() {
+            const container = document.getElementById('pending-reviews-container');
+            container.innerHTML = '';
+            
+            if (pendingReviews.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666;">Нет отзывов на модерации</p>';
+                return;
+            }
+            
+            pendingReviews.forEach((review, index) => {
+                const pendingReview = document.createElement('div');
+                pendingReview.className = 'pending-review';
+                pendingReview.innerHTML = `
+                    <p><strong>Товар:</strong> ${review.product}</p>
+                    <p><strong>Автор:</strong> ${review.author}</p>
+                    <p><strong>Отзыв:</strong> ${review.text}</p>
+                    <div class="pending-review-actions">
+                        <button class="btn btn-success approve-review" data-index="${index}">Одобрить</button>
+                        <button class="btn btn-danger reject-review" data-index="${index}">Отклонить</button>
+                    </div>
+                `;
+                container.appendChild(pendingReview);
+            });
+        }
+
+        // Удаление отзыва
+        function deleteReview(index) {
+            reviews.splice(index, 1);
+            saveData();
+            renderReviews();
+        }
+
+        // Добавление нового отзыва (от пользователя - отправляется на модерацию)
+        function addPendingReview(text, author, product) {
+            if (text.trim() && author.trim() && product.trim()) {
+                pendingReviews.unshift({ text, author, product });
+                saveData();
+                renderPendingReviews();
+                return true;
+            }
+            return false;
+        }
+
+        // Добавление отзыва администратором (сразу публикуется)
+        function addReview(text, author, product) {
+            if (text.trim() && author.trim() && product.trim()) {
+                reviews.unshift({ text, author, product, status: "published" });
+                saveData();
+                renderReviews();
+                return true;
+            }
+            return false;
+        }
+
+        // Добавление новости
+        function addNews(title, content) {
+            if (title.trim() && content.trim()) {
+                const newNews = {
+                    id: Date.now(),
+                    title,
+                    content,
+                    author: "Администратор",
+                    date: new Date().toISOString().split('T')[0],
+                    comments: []
+                };
+                news.unshift(newNews);
+                saveData();
+                renderNews();
+                renderHomeNews();
+                return true;
+            }
+            return false;
+        }
+
+        // Добавление комментария к новости
+        function addComment(newsId, text) {
+            if (!currentUser) {
+                openRegistrationModal();
+                return false;
+            }
+            
+            const newsItem = news.find(item => item.id === newsId);
+            if (newsItem && text.trim()) {
+                newsItem.comments.push({
+                    id: Date.now(),
+                    author: currentUser.name,
+                    text,
+                    date: new Date().toISOString().split('T')[0]
+                });
+                saveData();
+                renderNews();
+                return true;
+            }
+            return false;
+        }
+
+        // Удаление комментария
+        function deleteComment(newsId, commentId) {
+            const newsItem = news.find(item => item.id === newsId);
+            if (newsItem) {
+                const commentIndex = newsItem.comments.findIndex(comment => comment.id === commentId);
+                if (commentIndex !== -1) {
+                    newsItem.comments.splice(commentIndex, 1);
+                    saveData();
+                    renderNews();
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Регистрация пользователя
+        function registerUser(name, email, password, subscribe) {
+            // Проверяем, нет ли уже пользователя с таким email
+            if (users.find(user => user.email === email)) {
+                return false;
+            }
+            
+            const newUser = {
+                id: Date.now(),
+                name,
+                email,
+                password, // В реальном приложении пароль должен хэшироваться!
+                subscribe,
+                registered: new Date().toISOString().split('T')[0]
+            };
+            
+            users.push(newUser);
+            saveData();
+            return true;
+        }
+
+        // Авторизация пользователя
+        function loginUser(email, password) {
+            const user = users.find(u => u.email === email && u.password === password);
+            if (user) {
+                currentUser = user;
+                saveData();
+                return true;
+            }
+            return false;
+        }
+
+        // Выход пользователя
+        function logoutUser() {
+            currentUser = null;
+            saveData();
+            updateAuthUI();
+            renderNews();
+        }
+
+        // Модерация отзыва
+        function moderateReview(index, approve) {
+            const review = pendingReviews[index];
+            
+            if (approve) {
+                // Одобрить - переместить в опубликованные
+                reviews.unshift({ ...review, status: "published" });
+            }
+            
+            // Удалить из ожидающих модерации
+            pendingReviews.splice(index, 1);
+            saveData();
+            renderReviews();
+            renderPendingReviews();
+        }
+
+        // Переключение режима администратора
+        function toggleAdminMode() {
+            isAdminMode = !isAdminMode;
+            const reviewsSection = document.getElementById('reviews');
+            if (isAdminMode) {
+                reviewsSection.classList.add('admin-mode');
+                document.getElementById('toggle-admin-mode').textContent = 'Обычный режим';
+            } else {
+                reviewsSection.classList.remove('admin-mode');
+                document.getElementById('toggle-admin-mode').textContent = 'Режим удаления';
+            }
+        }
+
+        // Переключение режима модерации комментариев
+        function toggleCommentsMode() {
+            isCommentsAdminMode = !isCommentsAdminMode;
+            const forumSection = document.getElementById('forum');
+            if (isCommentsAdminMode) {
+                forumSection.classList.add('admin-mode');
+                document.getElementById('toggle-comments-mode').textContent = 'Обычный режим';
+            } else {
+                forumSection.classList.remove('admin-mode');
+                document.getElementById('toggle-comments-mode').textContent = 'Режим удаления комментариев';
+            }
+        }
+
+        // Открытие модального окна для отзыва
+        function openReviewModal(product) {
+            document.getElementById('review-product').value = product;
+            document.getElementById('review-modal').classList.add('active');
+        }
+
+        // Закрытие модального окна
+        function closeReviewModal() {
+            document.getElementById('review-modal').classList.remove('active');
+            document.getElementById('review-form').reset();
+        }
+
+        // Открытие модального окна регистрации
+        function openRegistrationModal() {
+            document.getElementById('registration-modal').classList.add('active');
+        }
+
+        // Закрытие модального окна регистрации
+        function closeRegistrationModal() {
+            document.getElementById('registration-modal').classList.remove('active');
+            document.getElementById('login-form-modal').reset();
+            document.getElementById('register-form').reset();
+            document.getElementById('register-success').style.display = 'none';
+        }
+
+        // Переключение вкладок в админ-панели
+        function switchAdminTab(tabName) {
+            document.querySelectorAll('.admin-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.admin-tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            document.querySelector(`.admin-tab[data-tab="${tabName}"]`).classList.add('active');
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+        }
+
+        // Переключение вкладок в модальном окне
+        function switchModalTab(tabName) {
+            document.querySelectorAll('.modal-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.modal-tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            document.querySelector(`.modal-tab[data-tab="${tabName}"]`).classList.add('active');
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+        }
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            // Загрузка данных
+            loadData();
+            
+            // Навигация по страницам
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    navigateToPage(pageId);
+                });
+            });
+            
+            // Обработка формы заказа
+            document.getElementById('order-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Спасибо за вашу заявку! Мы свяжемся с вами в ближайшее время.');
+                this.reset();
+            });
+            
+            // Вход в админ-панель
+            document.getElementById('login-btn').addEventListener('click', function() {
+                const password = document.getElementById('password').value;
+                if (password === PASSWORD) {
+                    document.getElementById('login-form').style.display = 'none';
+                    document.getElementById('admin-panel').style.display = 'block';
+                    document.getElementById('login-error').style.display = 'none';
+                } else {
+                    document.getElementById('login-error').style.display = 'block';
+                }
+            });
+            
+            // Переключение вкладок админ-панели
+            document.querySelectorAll('.admin-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabName = this.getAttribute('data-tab');
+                    switchAdminTab(tabName);
+                });
+            });
+            
+            // Переключение вкладок модального окна
+            document.querySelectorAll('.modal-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabName = this.getAttribute('data-tab');
+                    switchModalTab(tabName);
+                });
+            });
+            
+            // Переключение режима администратора
+            document.getElementById('toggle-admin-mode').addEventListener('click', toggleAdminMode);
+            
+            // Переключение режима модерации комментариев
+            document.getElementById('toggle-comments-mode').addEventListener('click', toggleCommentsMode);
+            
+            // Добавление примеров отзывов
+            document.getElementById('add-sample-reviews').addEventListener('click', function() {
+                reviews = sampleReviews.filter(r => r.status === "published");
+                saveData();
+                renderReviews();
+                alert('Примеры отзывов добавлены!');
+            });
+            
+            // Удаление всех отзывов
+            document.getElementById('clear-all-reviews').addEventListener('click', function() {
+                if (confirm('Вы уверены, что хотите удалить все отзывы?')) {
+                    reviews = [];
+                    saveData();
+                    renderReviews();
+                    alert('Все отзывы удалены!');
+                }
+            });
+            
+            // Добавление нового отзыва из админ-панели
+            document.getElementById('add-review-btn').addEventListener('click', function() {
+                const text = document.getElementById('new-review-text').value;
+                const author = document.getElementById('new-review-author').value;
+                const product = document.getElementById('new-review-product').value;
+                if (addReview(text, author, product)) {
+                    document.getElementById('new-review-text').value = '';
+                    document.getElementById('new-review-author').value = '';
+                    alert('Отзыв добавлен!');
+                }
+            });
+            
+            // Обработка кнопок "Оставить отзыв" на товарах
+            document.querySelectorAll('.add-review-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const product = this.getAttribute('data-product');
+                    openReviewModal(product);
+                });
+            });
+            
+            // Обработка формы отзыва
+            document.getElementById('review-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const product = document.getElementById('review-product').value;
+                const author = document.getElementById('review-author').value;
+                const text = document.getElementById('review-text').value;
+                
+                if (addPendingReview(text, author, product)) {
+                    closeReviewModal();
+                    alert('Спасибо за ваш отзыв! Он появится на сайте после проверки.');
+                }
+            });
+            
+            // Обработка формы новости
+            document.getElementById('news-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const title = document.getElementById('news-title').value;
+                const content = document.getElementById('news-content').value;
+                
+                if (addNews(title, content)) {
+                    document.getElementById('news-form').reset();
+                    document.getElementById('add-news-form').classList.remove('active');
+                    alert('Новость опубликована!');
+                }
+            });
+            
+            // Обработка формы комментария
+            document.addEventListener('submit', function(e) {
+                if (e.target.classList.contains('comment-form')) {
+                    e.preventDefault();
+                    const newsId = parseInt(e.target.getAttribute('data-news-id'));
+                    const text = e.target.querySelector('.comment-input').value;
+                    
+                    if (addComment(newsId, text)) {
+                        e.target.reset();
+                    }
+                }
+            });
+            
+            // Обработка формы регистрации
+            document.getElementById('register-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('register-name').value;
+                const email = document.getElementById('register-email').value;
+                const password = document.getElementById('register-password').value;
+                const subscribe = document.getElementById('subscribe-news').checked;
+                
+                if (registerUser(name, email, password, subscribe)) {
+                    document.getElementById('register-success').style.display = 'block';
+                    document.getElementById('register-form').reset();
+                    
+                    // Автоматически входим после регистрации
+                    setTimeout(() => {
+                        if (loginUser(email, password)) {
+                            closeRegistrationModal();
+                            updateAuthUI();
+                            renderNews();
+                            alert('Добро пожаловать! Теперь вы можете оставлять комментарии.');
+                        }
+                    }, 1000);
+                } else {
+                    alert('Пользователь с таким email уже зарегистрирован!');
+                }
+            });
+            
+            // Обработка формы входа
+            document.getElementById('login-form-modal').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+                
+                if (loginUser(email, password)) {
+                    closeRegistrationModal();
+                    updateAuthUI();
+                    renderNews();
+                    alert('Вход выполнен успешно!');
+                } else {
+                    document.getElementById('login-error-modal').style.display = 'block';
+                }
+            });
+            
+            // Показать/скрыть форму добавления новости
+            document.getElementById('toggle-news-form').addEventListener('click', function() {
+                const form = document.getElementById('add-news-form');
+                form.classList.toggle('active');
+            });
+            
+            // Добавление примеров новостей
+            document.getElementById('add-sample-news').addEventListener('click', function() {
+                news = [...sampleNews];
+                saveData();
+                renderNews();
+                renderHomeNews();
+                alert('Примеры новостей добавлены!');
+            });
+            
+            // Удаление всех новостей
+            document.getElementById('clear-all-news').addEventListener('click', function() {
+                if (confirm('Вы уверены, что хотите удалить все новости?')) {
+                    news = [];
+                    saveData();
+                    renderNews();
+                    renderHomeNews();
+                    alert('Все новости удалены!');
+                }
+            });
+            
+            // Закрытие модальных окон
+            document.getElementById('cancel-review').addEventListener('click', closeReviewModal);
+            document.getElementById('cancel-registration').addEventListener('click', closeRegistrationModal);
+            
+            // Закрытие модальных окон при клике вне их
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        if (this.id === 'review-modal') closeReviewModal();
+                        if (this.id === 'registration-modal') closeRegistrationModal();
+                    }
+                });
+            });
+            
+            // Обработка модерации отзывов
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('approve-review')) {
+                    const index = parseInt(e.target.getAttribute('data-index'));
+                    moderateReview(index, true);
+                    alert('Отзыв одобрен и опубликован!');
+                }
+                
+                if (e.target.classList.contains('reject-review')) {
+                    const index = parseInt(e.target.getAttribute('data-index'));
+                    moderateReview(index, false);
+                    alert('Отзыв отклонен и удален!');
+                }
+                
+                if (e.target.classList.contains('btn-danger') && e.target.getAttribute('data-action') === 'delete') {
+                    const index = parseInt(e.target.getAttribute('data-index'));
+                    deleteReview(index);
+                    alert('Отзыв удален!');
+                }
+                
+                if (e.target.classList.contains('comment-action')) {
+                    const newsId = parseInt(e.target.getAttribute('data-news-id'));
+                    const commentId = parseInt(e.target.getAttribute('data-comment-id'));
+                    if (deleteComment(newsId, commentId)) {
+                        alert('Комментарий удален!');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
